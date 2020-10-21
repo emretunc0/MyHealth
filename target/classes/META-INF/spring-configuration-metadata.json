@@ -1,0 +1,17 @@
+{
+  "hints": [],
+  "properties": [
+    {
+      "sourceType": "com.garmin.gh.apps.wellnessmonitor.StaticUserPartnerSource",
+      "name": "partner.users",
+      "type": "java.util.List<com.garmin.gh.apps.wellnessmonitor.domain.UserPartner>"
+    }
+  ],
+  "groups": [
+    {
+      "sourceType": "com.garmin.gh.apps.wellnessmonitor.StaticUserPartnerSource",
+      "name": "partner",
+      "type": "com.garmin.gh.apps.wellnessmonitor.StaticUserPartnerSource"
+    }
+  ]
+}

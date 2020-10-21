@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<property name="LOGS_HOME" value="${LOG_PATH}"/>
+	<!-- standard encoder pattern-->
+	<property name="GH_PATTERN" value="%d{MM/dd/yy HH:mm:ss.SSS} %-5p %t %C{0}:%L - %m%n" />
+	
+	<include resource="org/springframework/boot/logging/logback/defaults.xml" />
+	<include resource="org/springframework/boot/logging/logback/console-appender.xml" />
+	
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <layout class="ch.qos.logback.classic.PatternLayout">
+        <Pattern>${GH_PATTERN}</Pattern>
+    </layout>
+	</appender>
+
+	<property name="GH_PARTNER_IMPL_LOG_FILE" value="${LOGS_HOME}/gh-partner-impl.log"/>
+	<appender name="FILE"   class="ch.qos.logback.core.rolling.RollingFileAppender">
+    	<file>${GH_PARTNER_IMPL_LOG_FILE}</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${GH_PARTNER_IMPL_LOG_FILE}.%d{yyyy-MM-dd}</fileNamePattern>
+			<maxHistory>14</maxHistory>
+		</rollingPolicy>
+		<encoder>
+            <charset>UTF-8</charset>
+			<pattern>${GH_PATTERN}</pattern>
+		</encoder>
+	</appender>
+
+	<property name="GH_PARTNER_IMPL_PING_LOG_FILE" value="${LOGS_HOME}/gh-partner-impl-ping.log"/>
+	<appender name="PingLogAppender"   class="ch.qos.logback.core.rolling.RollingFileAppender">
+    	<file>${GH_PARTNER_IMPL_PING_LOG_FILE}</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${GH_PARTNER_IMPL_PING_LOG_FILE}.%d{yyyy-MM-dd}</fileNamePattern>
+			<maxHistory>14</maxHistory>
+		</rollingPolicy>
+		<encoder>
+            <charset>UTF-8</charset>
+			<pattern>${GH_PATTERN}</pattern>
+		</encoder>
+	</appender>
+	
+	<property name="GH_PARTNER_IMPL_EVENT_PUSH_LOG_FILE" value="${LOGS_HOME}/gh-partner-impl-event-push.log"/>
+	<appender name="EventPushLogAppender"   class="ch.qos.logback.core.rolling.RollingFileAppender">
+    	<file>${GH_PARTNER_IMPL_EVENT_PUSH_LOG_FILE}</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${GH_PARTNER_IMPL_EVENT_PUSH_LOG_FILE}.%d{yyyy-MM-dd}</fileNamePattern>
+			<maxHistory>14</maxHistory>
+		</rollingPolicy>
+		<encoder>
+            <charset>UTF-8</charset>
+			<pattern>${GH_PATTERN}</pattern>
+		</encoder>
+	</appender>
+	
+	
+	<property name="GH_PARTNER_IMPL_LEGACY_PUSH_LOG_FILE" value="${LOGS_HOME}/gh-partner-impl-legacy-push.log"/>
+	<appender name="PushLogAppender"   class="ch.qos.logback.core.rolling.RollingFileAppender">
+    	<file>${GH_PARTNER_IMPL_LEGACY_PUSH_LOG_FILE}</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${GH_PARTNER_IMPL_LEGACY_PUSH_LOG_FILE}.%d{yyyy-MM-dd}</fileNamePattern>
+			<maxHistory>14</maxHistory>
+		</rollingPolicy>
+		<encoder>
+            <charset>UTF-8</charset>
+			<pattern>${GH_PATTERN}</pattern>
+		</encoder>
+	</appender>
+	
+	
+	<logger name="com.garmin.gh.apps.wellnessmonitor" level="info" additivity="false">
+    	<appender-ref ref="FILE" />
+    	<appender-ref ref="STDOUT" />
+	</logger>
+
+	<logger name="com.garmin.gh.apps.wellnessmonitor.controller.WellnessPingController" level="info" additivity="false">
+    	<appender-ref ref="PingLogAppender" />
+	</logger>
+	
+	<logger name="com.garmin.gh.apps.wellnessmonitor.controller.WellnessPushController" level="info" additivity="false">
+    	<appender-ref ref="PushLogAppender" />
+	</logger>
+	
+	<logger name="push-log" level="info" additivity="false">
+    <appender-ref ref="PushLogAppender" />
+	</logger>
+
+	<logger name="ping-log" level="info" additivity="false">
+    <appender-ref ref="PingLogAppender" />
+	</logger>
+	
+	<logger name="event-push-log" level="info" additivity="false">
+    <appender-ref ref="EventPushLogAppender" />
+	</logger>
+	
+	<root level="INFO">
+    	<appender-ref ref="FILE" />
+    	<appender-ref ref="STDOUT" />
+	</root>
+
+</configuration>

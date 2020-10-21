@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Implementation-Vendor: Pivotal Software, Inc.
+Implementation-Title: com.garmin.gh.app:gh-partner-impl:jar
+Implementation-Version: 0.0.1-SNAPSHOT
+Implementation-Vendor-Id: com.garmin.gh.app
+Build-Jdk: 1.6.0_13
+Built-By: yarramsetty
+Created-By: Maven Integration for Eclipse
+Implementation-URL: http://projects.spring.io/spring-boot/gh-partner-i
+ mpl/
+
